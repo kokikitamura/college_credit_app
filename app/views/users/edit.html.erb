@@ -1,0 +1,23 @@
+<% provide(:title, "アカウント設定") %>
+<h2 class="title">アカウント設定</h2>
+<div class="form">
+  <%= form_with(model: @user) do |f| %>
+    <%= render 'shared/error_messages' %>
+    <div class="form-item">
+      <%= f.label :email,"メールアドレス" %>
+      <%= f.email_field :email %>
+    </div>
+    <div class="form-item">
+      <%= f.label :password, "新しいパスワード（6文字以上）" %>
+      <%= f.password_field :password %>
+    </div>
+    <div class="form-item">
+      <%= f.label :password_confirmation, "新しいパスワードの確認" %>
+      <%= f.password_field :password_confirmation %>
+    </div>
+    <div class="btn-wrapper">
+      <%= f.submit "変更", class: "btn btn-blue" %>
+    </div>
+  <% end %>
+  <p><%= link_to "アカウント削除", "withdraw" %></p>
+</div>

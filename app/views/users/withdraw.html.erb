@@ -1,0 +1,14 @@
+<% provide(:title, "アカウント削除") %>
+<h2 class="title">アカウント削除</h2>
+
+<div class="warning">
+  <ol>
+    <li>このアカウントに登録された全ての情報が削除されます。</li>
+    <li class="bold">一度削除したアカウントは二度と復元できません。</li>
+  </ol>
+</div>
+
+<div class="btn-wrapper">
+  <%= link_to "削除", @user, class: "btn btn-red", data: { "turbo-method": :delete,
+                                            turbo_confirm: "本当に削除しますか？" } %>
+</div>
