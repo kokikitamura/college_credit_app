@@ -281,7 +281,55 @@ textarea {
   width: 100%;
 }
 
+/* ―ドロップダウン */
+.dropdown-lists {
+  display: none; /*普段は非表示*/
+  list-style: none;
+  padding-left: 0;
+  width: 150%;
+  position: absolute;
+  top: 80px;
+  right: 0;
+  z-index: 10;
+}
 
+.nav-item:hover .dropdown-lists {
+  display: block;/*ナビにホバーしたら表示*/
+}
+
+.dropdown-list {
+  background-color: $darkblue;
+  height: 40px;
+  position: relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.dropdown-list:not(:first-child)::before{
+  content: "";
+  width: 100%;
+  height: 0.5px;
+  background-color: #474747;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.dropdown-list:hover {
+  background-color: $blue;
+}
+
+.dropdown-list a {
+  color: $white;
+  text-decoration: none;
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+
+.dropdown-list a::after {
+  content: none; /* ラインを表示しない */
+}
 
 /*フッター*/
 footer {
