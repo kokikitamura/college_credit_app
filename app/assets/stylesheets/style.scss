@@ -1,0 +1,328 @@
+@charset "UTF-8";
+
+/* 共通 */
+$blue: #02448f;
+$darkblue: #012956;
+$skyblue: #3da9ff;
+$black: #333333;
+$red: #e01428;
+$darkred : #9f1a1a;
+$white : #f5f5f5;
+
+$breakpoints: ('tb': 'screen and (max-width: 768px)');
+
+@mixin media($breakpoint) {
+    @media #{map-get($breakpoints, $breakpoint)} {
+        @content;
+    }
+}
+
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+
+body {
+  font-family: "Helvetica Neue",
+    Arial,
+    "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans",
+    Meiryo,
+    sans-serif;
+  font-size: 100%;
+  background-color: $white;
+  color: $black;
+  /*footerを最下部に固定する*/
+  min-height: 100vh;
+  position: relative;/*←相対位置*/
+  padding-bottom: 120px;/*←footerの高さを確保*/
+  /*はみ出たときの折り返し*/
+  overflow-wrap: anywhere; /* 収まらない場合に折り返す */
+  word-break: normal; /* 単語の分割はデフォルトに依存 */
+  line-break: strict; /* 禁則処理を厳格に適用 */
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 5%;
+  }
+
+/* パーツ */
+/* ―ボタン */
+.btn-wrapper {
+  margin: 30px 10px;
+  text-align: center;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 32px;
+  color: #fff;
+  border-radius: 5px;
+  width: fit-content;
+}
+
+.btn-blue {
+  background-color: $blue;
+  &:hover {
+    background-color: $darkblue;
+  }
+}
+
+.btn-red {
+  background-color: $red;
+  &:hover {
+    background-color: $darkred;
+  }
+}
+
+.btn-gray {
+  background-color: #8b8b8b;
+  &:hover {
+    background-color: #6d6d6d;
+  }
+}
+
+.btn-small {
+  padding: 5px 15px;
+  color: #fff;
+  border-radius: 5px;
+  width: fit-content;
+  white-space: nowrap
+}
+
+
+/* ―フォーム */
+label {
+  display:block;
+  text-align: left;
+}
+
+input[type="text"],input[type="email"],input[type="password"],input[type="search"],select{
+  background: #eee;
+  height: 2.4rem;
+  width: 100%;
+  padding: 0 16px;
+  border-radius: 4px;
+  border: none;
+  box-shadow: 0 0 0 1px #ccc inset;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+select {
+  option[value=""] {
+    display: none;
+  }
+}
+
+.form-item{
+  margin: 15px 0;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, textarea:focus, input[type="search"]:focus, select:focus{
+  outline: 0;
+  box-shadow: 0 0 0 2px $skyblue inset;
+}
+
+
+textarea {
+  background: #eee;
+  width: 100%;
+  height: 8em;
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: none;
+  box-shadow: 0 0 0 1px #ccc inset;
+  margin-bottom: 18px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  &:focus{
+    outline: 0;
+    box-shadow: 0 0 0 2px $skyblue inset;
+  }
+}
+
+.select-box {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.select-box::after {
+  content: '';
+  position: absolute;
+  border: 5px solid #333;
+  border-bottom: 0;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  top: 48%;
+  right: 10px;
+  width: 0;
+  height: 0;
+}
+
+
+/* ―タイトル */
+.title {
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* ―flashメッセージ*/
+.alert {
+  border-radius: 5px;
+  padding: 10px 50px;
+  margin: 10px auto 0;
+  width: fit-content;
+}
+
+.alert-notice, .alert-success {
+  background-color: #bcdfff;
+  color: #0067C0;
+  border: solid 1px #0067C0;
+}
+
+.alert-danger {
+  background-color: #ffd4d1;
+  color: #930403;
+  border: solid 1px #930403;
+}
+
+/* ―errorメッセージ*/
+.error-message {
+  color: $red;
+  margin-bottom: 5px;
+  list-style: none;
+  &:last-child {
+    margin-bottom: 15px;
+  }
+}
+
+.field_with_errors input{
+  outline: none;
+  box-shadow: 0 0 0 2px $red inset;
+}
+
+/* 中央揃えしたい要素を囲むdiv */
+.center {
+  text-align: center;
+  margin: auto;
+}
+
+
+
+/*ヘッダー*/
+.header {
+  background-color: $blue;
+  height: 80px;
+}
+
+.header-container {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  h1 {
+    display: inline;
+    width: 180px;
+  }
+  a {
+    color: #fff;
+  }
+}
+
+.nav {
+  display: flex;
+  list-style: none;
+  padding-left: 0;
+  gap: 30px;
+  height: 100%;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 80px;
+}
+
+.nav-item a {
+  position: relative;
+}
+
+/* ―ホバーエフェクト */
+.nav-item a::after {
+  /*アンダーラインのスタイル*/
+  position: absolute;
+  content: "";
+  display: block;
+  height: 2px;
+  background-color: $white;
+  bottom: -10px;
+  left: 0;
+  /*幅を0に設定*/
+  width: 0;
+  /*アニメーションの速度設定*/
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.nav-item a:hover::after {
+  /*幅を100%に設定*/
+  width: 100%;
+}
+
+
+
+/*フッター*/
+footer {
+  text-align: center;
+  padding: 30px 0;
+  border-top: 1px solid #cccccc;
+  width: 100%;
+  /*最下部に固定。フッターの高さを変えたときはbodyのpadding-bottomも変える*/
+  position: absolute;/*←絶対位置*/
+  bottom: 0; /*下に固定*/
+}
+
+
+/* 登録画面 */
+.form {
+  text-align: center;
+  width: 300px;
+  margin: auto;
+}
+
+/* アカウントページ */
+.account-show-item {
+  display: flex;
+  align-items: center;
+  gap: 3%;
+  margin: auto;
+  margin-bottom: 20px;
+  h3 {
+    text-align: right;
+    font-size: 1rem;
+    width: 45%;
+  }
+}
+
+/* アカウント削除 */
+.warning {
+  background: #ffd5d5;
+  max-width: 500px;
+  padding: 20px;
+  margin: auto;
+  li{
+    list-style-position: inside;
+  }
+}

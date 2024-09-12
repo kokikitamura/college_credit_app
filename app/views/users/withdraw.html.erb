@@ -9,6 +9,8 @@
 </div>
 
 <div class="btn-wrapper">
-  <%= link_to "削除", @user, class: "btn btn-red", data: { "turbo-method": :delete,
-                                            turbo_confirm: "本当に削除しますか？" } %>
+  <%= link_to "削除しない", edit_user_path(@user), method: :get, class: "btn btn-red" %>
+</div>
+<div class="center">
+  <p><%= link_to "削除", @user, data: { "turbo-method": :delete, turbo_confirm: "本当に削除しますか？" } %></p>
 </div>
