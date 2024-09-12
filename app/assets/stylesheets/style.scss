@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
 /* 共通 */
-$blue: #02448f;
-$darkblue: #012956;
+$main: #5f9ea0;
+$dark-main: #4b7c7d;
 $skyblue: #3da9ff;
 $black: #333333;
 $red: #e01428;
@@ -71,9 +71,9 @@ img {
 }
 
 .btn-blue {
-  background-color: $blue;
+  background-color: $main;
   &:hover {
-    background-color: $darkblue;
+    background-color: $dark-main;
   }
 }
 
@@ -162,7 +162,7 @@ textarea {
 .select-box::after {
   content: '';
   position: absolute;
-  border: 5px solid #333;
+  border: 5px solid $black;
   border-bottom: 0;
   border-left-color: transparent;
   border-right-color: transparent;
@@ -224,7 +224,7 @@ textarea {
 
 /*ヘッダー*/
 .header {
-  background-color: $blue;
+  background-color: $main;
   height: 80px;
 }
 
@@ -235,7 +235,6 @@ textarea {
   align-items: center;
   h1 {
     display: inline;
-    width: 180px;
   }
   a {
     color: #fff;
@@ -298,7 +297,7 @@ textarea {
 }
 
 .dropdown-list {
-  background-color: $darkblue;
+  background-color: $dark-main;
   height: 40px;
   position: relative;
   display:flex;
@@ -316,7 +315,7 @@ textarea {
 }
 
 .dropdown-list:hover {
-  background-color: $blue;
+  background-color: $main;
 }
 
 .dropdown-list a {
