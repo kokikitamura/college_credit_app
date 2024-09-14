@@ -1,0 +1,32 @@
+<% provide(:title, "科目区分") %>
+<h2 class="title">科目区分</h2>
+
+<ul class="category-list">
+  <% @categories.each do |category| %>
+    <% if category.root? %> <!-- 親カテゴリーを確認 -->
+    <% if category.children.any? %>
+      <li class="parent_category-list">
+        <h3><%= category.name %></h3>
+        <ul>
+          <% category.children.each do |child| %>
+            <li class="child_category-list">
+              <h4><%= child.name %></h4>
+              <p><%= child.credits %></p>
+            </li>
+          <% end %>
+        </ul>
+        <p><%= category.credits %></p>
+      </li>
+      <% else %>
+      <li class="parent_category-list_without_child">
+        <h3><%= category.name %></h3>
+        <p><%= category.credits %></p>
+      </li>
+      <% end %>
+    <% end %>
+  <% end %>
+  <li class="parent_category-list_without_child">
+    <h3>合計</h3>
+    <p><%= @all_credits %></p>
+  </li>
+</ul>
