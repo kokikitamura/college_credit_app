@@ -1,2 +1,24 @@
-<h1>Categories#new</h1>
-<p>Find me in app/views/categories/new.html.erb</p>
+<% provide(:title, "科目区分追加") %>
+<h2 class="title">科目区分追加</h2>
+<div class="form">
+  <%= form_with(model: @category) do |f| %>
+    <div class="form-item">
+      <%= f.label :name,"区分名" %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="form-item">
+      <%= f.label :credits,"単位数" %>
+      <%= f.number_field :credits %>
+    </div>
+    <div class="form-item">
+      <%= f.label :credits,"親区分（サブ区分の場合）" %>
+      <div class="select-box">
+        <%= f.select :ancestry, options_for_select(Category.where(user_id: current_user.id).where(ancestry: nil)
+          .map{|o| [o.name, o.id]}), { include_blank: "------" } %>
+      </div>
+    </div>
+    <div class="btn-wrapper">
+      <%= f.submit "追加", class: "btn btn-blue" %>
+    </div>
+  <% end %>
+</div>

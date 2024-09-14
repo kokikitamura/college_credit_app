@@ -3,6 +3,8 @@
 /* 共通 */
 $main: #5f9ea0;
 $dark-main: #4b7c7d;
+$light-main: #b7cfcf;
+$more-light-main: #dbe8e8;
 $skyblue: #3da9ff;
 $black: #333333;
 $red: #e01428;
@@ -172,6 +174,18 @@ textarea {
   height: 0;
 }
 
+input[type="number"] {
+  background: #eee;
+  height: 2.0rem;
+  width: 80px;
+  padding: 0 10px;
+  border-radius: 4px;
+  border: none;
+  box-shadow: 0 0 0 1px #ccc inset;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
 
 /* ―タイトル */
 .title {
@@ -374,6 +388,7 @@ footer {
   }
 }
 
+/*科目区分一覧*/
 .category-list {
   width: 600px;
   margin: auto;
@@ -383,15 +398,6 @@ footer {
 .parent_category-list {
   display: flex;
   border-bottom: 1px solid $black;
-  > h3{
-    border-right: 1px solid $black;
-    width: 200px;
-    background: #ddd;
-    display:flex;
-    align-items: center;
-    padding-left: 10px;
-    font-size: 1.1rem;
-  }
   > p {
     width: 100px;
     display:flex;
@@ -403,15 +409,32 @@ footer {
   }
 }
 
-.parent_category-list_without_child {
-  display: flex;
-  border-bottom: 1px solid $black;
-  h3{
-    width: 500px;
-    background: #ddd;
+.category_name_in_parent_category_list {
+  border-right: 1px solid $black;
+    width: 200px;
+    background: $light-main;
     display:flex;
     align-items: center;
     padding-left: 10px;
+    color: $black;
+    font-weight: bold;
+    font-size: 1.1rem;
+    &:hover{
+      background: #eee;
+    }
+}
+
+.parent_category-list_without_child {
+  display: flex;
+  border-bottom: 1px solid $black;
+  h3 {
+    width: 500px;
+    background: $light-main;
+    display:flex;
+    align-items: center;
+    padding-left: 10px;
+    color: $black;
+    font-weight: bold;
     font-size: 1.1rem;
     border-right: 1px solid $black;
   }
@@ -428,18 +451,24 @@ footer {
   }
 }
 
+.category_name_in_parent_category_list_without_child {
+  width: 500px;
+  background: $light-main;
+  display:flex;
+  align-items: center;
+  padding-left: 10px;
+  color: $black;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-right: 1px solid $black;
+  &:hover{
+    background: #eee;
+  }
+}
+
 .child_category-list {
   display: flex;
   border-bottom: 1px solid $black;
-  h4{
-    width: 200px;
-    display:flex;
-    align-items: center;
-    padding-left: 10px;
-    font-weight: normal;
-    font-size: 1.1rem;
-    border-right: 1px solid $black;
-  }
   p {
     width: 99px;
     display:flex;
@@ -451,4 +480,19 @@ footer {
   &:last-child{
     border: none;
   }
+}
+
+.category_name_in_child_category_list {
+  width: 200px;
+    display:flex;
+    align-items: center;
+    padding-left: 10px;
+    font-weight: normal;
+    font-size: 1.1rem;
+    color: $black;
+    border-right: 1px solid $black;
+    background: $more-light-main;
+    &:hover{
+      background: #eee;
+    }
 }

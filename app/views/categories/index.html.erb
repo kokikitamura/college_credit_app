@@ -1,16 +1,24 @@
 <% provide(:title, "科目区分") %>
 <h2 class="title">科目区分</h2>
-
+<div class="btn-wrapper">
+  <%= link_to new_category_path, class: "btn btn-blue" do %>
+    <i class="fa-solid fa-plus"></i> 追加
+  <% end %>
+</div>
 <ul class="category-list">
   <% @categories.each do |category| %>
     <% if category.root? %> <!-- 親カテゴリーを確認 -->
     <% if category.children.any? %>
       <li class="parent_category-list">
-        <h3><%= category.name %></h3>
+        <%= link_to category, class: "link_to_show category_name_in_parent_category_list" do %>
+          <%= category.name %>
+        <% end %>
         <ul>
           <% category.children.each do |child| %>
             <li class="child_category-list">
-              <h4><%= child.name %></h4>
+              <%= link_to child, class: "link_to_show category_name_in_child_category_list" do %>
+                <%= child.name %>
+              <% end %>
               <p><%= child.credits %></p>
             </li>
           <% end %>
@@ -19,7 +27,9 @@
       </li>
       <% else %>
       <li class="parent_category-list_without_child">
-        <h3><%= category.name %></h3>
+        <%= link_to category, class: "link_to_show category_name_in_parent_category_list_without_child" do %>
+          <%= category.name %>
+        <% end %>
         <p><%= category.credits %></p>
       </li>
       <% end %>
