@@ -1,10 +1,14 @@
 @charset "UTF-8";
 
 /* 共通 */
-$main: #5f9ea0;
+/*$main: #5f9ea0;
 $dark-main: #4b7c7d;
 $light-main: #b7cfcf;
-$more-light-main: #dbe8e8;
+$more-light-main: #dbe8e8;*/
+$main: #ff952b;
+$dark-main: #dc7419;
+$light-main: #fbc28f;
+$more-light-main: #ffdec2;
 $skyblue: #3da9ff;
 $black: #333333;
 $red: #e01428;
@@ -420,7 +424,7 @@ footer {
     font-weight: bold;
     font-size: 1.1rem;
     &:hover{
-      background: #eee;
+      background: $main;
     }
 }
 
@@ -462,7 +466,7 @@ footer {
   font-size: 1.1rem;
   border-right: 1px solid $black;
   &:hover{
-    background: #eee;
+    background: $main;
   }
 }
 
@@ -493,6 +497,6 @@ footer {
     border-right: 1px solid $black;
     background: $more-light-main;
     &:hover{
-      background: #eee;
+      background: $main;
     }
 }

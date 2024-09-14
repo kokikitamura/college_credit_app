@@ -11,7 +11,7 @@
       <%= f.number_field :credits %>
     </div>
     <div class="form-item">
-      <%= f.label :credits,"親区分（サブ区分の場合）" %>
+      <%= f.label :credits,"親区分（サブ区分を追加する場合）" %>
       <div class="select-box">
         <%= f.select :ancestry, options_for_select(Category.where(user_id: current_user.id).where(ancestry: nil)
           .map{|o| [o.name, o.id]}), { include_blank: "------" } %>

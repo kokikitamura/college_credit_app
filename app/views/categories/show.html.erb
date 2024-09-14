@@ -1,2 +1,16 @@
-<h1>Categories#show</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<% provide(:title, @category.name) %>
+<h2 class="title"><%= @category.name %></h2>
+<div class="show-item">
+  <div class="show-text">
+    <h3>区分名</h3>
+    <p id="name"><%= @category.name %></p>
+  </div>
+</div>
+
+<div class="btn-wrapper">
+  <%= link_to "編集", edit_category_path(@category), method: :get, class: "btn btn-blue" %>
+</div>
+<div class="btn-wrapper">
+  <%= link_to "削除", @category, class: "btn btn-red",
+    data: { "turbo-method": :delete, turbo_confirm: "本当に削除しますか？" } %>
+</div>
