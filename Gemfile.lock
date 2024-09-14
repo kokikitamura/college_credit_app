@@ -68,6 +68,8 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
+    ancestry (4.3.3)
+      activerecord (>= 5.2.6)
     ansi (1.5.0)
     ast (2.4.2)
     backport (1.2.0)
@@ -331,6 +333,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  ancestry
   bcrypt (= 3.1.18)
   bootsnap (= 1.16.0)
   capybara (= 3.38.0)
