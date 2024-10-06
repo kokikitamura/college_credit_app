@@ -1,11 +1,40 @@
 <% provide(:title, @category.name) %>
 <h2 class="title"><%= @category.name %></h2>
-<div class="show-item">
-  <div class="show-text">
-    <h3>区分名</h3>
-    <p id="name"><%= @category.name %></p>
-  </div>
+
+<div class="btn-wrapper">
+  <%= link_to new_category_path, class: "btn btn-blue" do %>
+    <i class="fa-solid fa-plus"></i> 追加
+  <% end %>
 </div>
+<ul class="category-list">
+  <% if @category.root? %> <!-- 親カテゴリーを確認 -->
+    <% if @category.children.any? %>
+      <li class="parent_category-list">
+        <h3 class="category_name_in_parent_category_list"><%= @category.name %></h3>
+        <ul>
+          <% @category.children.each do |child| %>
+            <li class="child_category-list">
+              <h4 class="category_name_in_child_category_list"><%= child.name %></h4>
+              <p><%= child.credits %></p>
+            </li>
+          <% end %>
+        </ul>
+        <p><%= @category.credits %></p>
+      </li>
+    <% else %>
+      <li class="parent_category-list_without_child">
+        <h3 class="category_name_in_parent_category_list_without_child"><%= @category.name %></h3>
+        <p><%= @category.credits %></p>
+      </li>
+    <% end %>
+  <% else %>
+    <li class="parent_category-list_without_child">
+      <h3 class="category_name_in_parent_category_list_without_child"><%= @category.name %></h3>
+      <p><%= @category.credits %></p>
+    </li>
+  <% end %>
+</ul>
+
 
 <div class="btn-wrapper">
   <%= link_to "編集", edit_category_path(@category), method: :get, class: "btn btn-blue" %>
