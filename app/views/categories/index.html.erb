@@ -14,6 +14,7 @@
             <%= category.name %>
           <% end %>
           <ul>
+            <% credits_sum = 0 %>
             <% category.children.each do |child| %>
               <li class="child_category-list">
                 <%= link_to child, class: "link_to_show category_name_in_child_category_list" do %>
@@ -21,9 +22,14 @@
                 <% end %>
                 <p><%= child.credits %></p>
               </li>
+              <% credits_sum += child.credits %>
             <% end %>
           </ul>
-          <p><%= category.credits %></p>
+          <% if category.credits >= credits_sum %>
+            <p><%= category.credits %></p>
+          <% else %>
+            <p><%= credits_sum %></p>
+          <% end %>
         </li>
       <% else %>
         <li class="parent_category-list_without_child">
