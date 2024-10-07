@@ -17,38 +17,38 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    if params[:category][:ancestry].empty?
-      @category = current_user.categories.build(category_params)
-      if @category.save
-        flash[:success] = "追加しました"
-        redirect_to categories_path
-      else
-        render 'new', status: :unprocessable_entity
-      end
+    @category = current_user.categories.build(category_params)
+    if @category.save
+      flash[:success] = "追加しました"
+      redirect_to categories_path
     else
-      parent_category = Category.find_by(user_id: current_user.id, id: params[:category][:ancestry])
-      @category = parent_category.children.build(category_params)
-      if @category.save
-        flash[:success] = "追加しました"
-        redirect_to categories_path
-      else
-        render 'new', status: :unprocessable_entity
-      end
+      render 'new', status: :unprocessable_entity
     end
   end
 
   def edit
+    @category = Category.find(params[:id])
   end
 
   def update
+    @category = Category.find(params[:id])
+    if @category.update(category_params)
+      flash[:success] = "更新しました"
+      redirect_to categories_path
+    else
+      render 'edit', status: :unprocessable_entity
+    end
   end
 
   def destroy
+    Category.find(params[:id]).destroy
+    flash[:notice] = "削除しました"
+    redirect_to categories_path, status: :see_other
   end
 
   private
-
     def category_params
-      params.require(:category).permit(:name, :credits).merge(user_id: current_user.id)
+      params[:category][:ancestry] = nil if params[:category][:ancestry].blank?
+      params.require(:category).permit(:name, :credits, :ancestry).merge(user_id: current_user.id)
     end
 end
