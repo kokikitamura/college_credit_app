@@ -4,7 +4,7 @@
     <nav>
       <ul class="nav">
       <% if logged_in? %>
-        <li class="nav-item"><%= link_to "授業一覧", "#" %></li>
+        <li class="nav-item"><%= link_to "授業一覧", courses_path %></li>
         <li class="nav-item"><%= link_to "科目区分", categories_path %></li>
         <li class="nav-item" ><%= link_to "アカウント ▼", '#' %>
           <ul class="dropdown-lists">
