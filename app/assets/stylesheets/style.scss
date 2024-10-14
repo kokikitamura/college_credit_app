@@ -7,8 +7,8 @@ $light-main: #b7cfcf;
 $more-light-main: #dbe8e8;*/
 $main: #ff952b;
 $dark-main: #dc7419;
-$light-main: #fbc28f;
-$more-light-main: #ffdec2;
+$light-main: #ffd4af;
+$more-light-main: #ffeedf;
 $skyblue: #3da9ff;
 $black: #333333;
 $red: #e01428;
@@ -54,6 +54,7 @@ a {
 img {
   max-width: 100%;
 }
+
 
 .container {
   max-width: 1100px;
@@ -392,7 +393,7 @@ footer {
   }
 }
 
-/*科目区分一覧*/
+/*科目区分一覧
 .category-list {
   width: 600px;
   margin: auto;
@@ -500,3 +501,61 @@ footer {
       background: $main;
     }
 }
+
+
+
+  */
+
+  /* カテゴリリストのスタイル */
+.parent-category-list {
+  max-width: 800px;
+  margin: auto;
+  overflow: hidden;
+}
+
+.parent-category-item {
+  list-style: none;
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: $light-main;
+  border-radius: 4px;
+}
+
+.name-and-credits {
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+
+.child-category-item {
+  list-style: none;
+  padding: 10px;
+  background-color: $more-light-main;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.course-item {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* リンクのスタイル */
+.link_to_show {
+  font-weight: bold;
+  text-decoration: none;
+  color: $black;
+}
+
+.link_to_show:hover {
+  text-decoration: underline;
+}
+
