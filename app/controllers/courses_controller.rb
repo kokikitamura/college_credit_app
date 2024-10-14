@@ -1,7 +1,12 @@
 class CoursesController < ApplicationController
   def index
-    @courses = Course.where(user_id: current_user.id)
+    # @courses = Course.where(user_id: current_user.id)
     @categories = Category.where(user_id: current_user.id)
+    @all_credits = 0
+    @categories.each do |category|
+      @all_credits += category.credits if category.root?   #親区分だけ足す
+    end
+    @all_credits #単位の総数
   end
 
   def show

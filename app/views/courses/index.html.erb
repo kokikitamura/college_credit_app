@@ -1,2 +1,70 @@
-<h1>Courses#index</h1>
-<p>Find me in app/views/courses/index.html.erb</p>
+<% provide(:title, "授業一覧") %>
+<h2 class="title">授業一覧</h2>
+
+<ul class="parent-category-list">
+  <% @grand_total_credits = 0 %>  <!-- 全授業の単位数の合計 -->
+  <% @categories.each do |category| %>
+    <% if category.root? %> <!-- 親カテゴリーか？ -->
+      <% if category.children.any? %> <!-- 子カテゴリーをもつとき -->
+        <% total_parent_credits = category.children.sum { |child| child.courses.sum(:credits) } %> <!-- 親カテゴリー内の授業の単位数の合計 -->
+        <% @grand_total_credits += total_parent_credits %> <!-- 親カテゴリー内の授業の単位数の合計を、全授業の単位数の合計に加算 -->
+        <li class="parent-category-item"> <!-- 親カテゴリー -->
+          <div class="name-and-credits">
+            <%= link_to category, class: "link_to_show" do %>
+              <%= category.name %>
+            <% end %>
+            <p><%= total_parent_credits %> / <%= category.credits %></p>
+          </div>
+          <ul class="child-category-list">
+            <% category.children.each do |child| %>
+            <% total_child_credits = child.courses.sum(:credits) %> <!-- 子カテゴリー内の授業の単位数の合計 -->
+              <li class="child-category-item"> <!-- 子カテゴリー -->
+                <div class="name-and-credits">
+                  <%= link_to child, class: "link_to_show" do %>
+                    <%= child.name %>
+                  <% end %>
+                  <p><%= total_child_credits %> / <%= child.credits %></p>
+                </div>
+                <ul class="course-list">
+                  <% courses = child.courses.all %>
+                  <% courses.each do |course| %>
+                    <li class="course-item"> <!-- 子カテゴリー内の授業 -->
+                      <p><%= course.name %></p>
+                      <p><%= course.credits %></p>
+                    </li>
+                  <% end %>
+                </ul>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+      <% else %> <!-- 子カテゴリーをもたないとき -->
+        <% total_parent_credits = category.courses.sum(:credits) %> <!-- 親カテゴリー内の授業の単位数の合計 -->
+        <% @grand_total_credits += total_parent_credits %> <!-- 親カテゴリー内の授業の単位数の合計を、全授業の単位数の合計に加算 -->
+        <li class="parent-category-item"> <!-- 親カテゴリー -->
+          <div class="name-and-credits">
+            <%= link_to category, class: "link_to_show" do %>
+              <%= category.name %>
+            <% end %>
+            <p><%= total_parent_credits %> / <%= category.credits %></p>
+          </div>
+          <ul class="course-list">
+            <% courses = category.courses.all %>
+            <% courses.each do |course| %>
+              <li class="course-item"> <!-- 親カテゴリー内の授業 -->
+                <p><%= course.name %></p>
+                <p><%= course.credits %></p>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+      <% end %>
+    <% end %>
+  <% end %>
+  <li class="parent-category-item">
+    <div class="name-and-credits">
+      <p>合計</p>
+      <p><%= @grand_total_credits %> / <%= @all_credits %></p>
+    </div>
+  </li>
+</ul>
